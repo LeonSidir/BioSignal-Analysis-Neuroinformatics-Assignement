@@ -113,3 +113,16 @@ C_worst = classify(XX_worst', XX_worst', GROUP);
 cp_worst = classperf(GROUP, C_worst);
 disp(['Classification CorrectRate using only Sensor ', num2str(worst_sensor_idx), ': ', num2str(cp_worst.CorrectRate)]);
 disp('------------------------------------------------');
+ 
+worst_sensor = worst_sensor_idx;
+
+figure(10); clf;
+for ii = 1:8
+    subplot(2,4,ii);
+    plot(1:Ntime, ICTAL_DATA(worst_sensor,:,ii), 'r'); hold on;
+    plot(1:Ntime, PRE_DATA(worst_sensor,:,ii), 'k', 'LineWidth', 1.5);
+    title(['Event ', num2str(ii)]);
+    ylabel(['Sensor ', num2str(worst_sensor)]);
+    xlabel('Time');
+    legend('ictal', 'pre-ictal');
+end
